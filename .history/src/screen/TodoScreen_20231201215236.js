@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { IconButton } from "react-native-paper";
 
 const dummyData = [
@@ -21,8 +21,6 @@ const dummyData = [
 ];
 
 const TodoScreen = () => {
-  const [todo, setTodo] = useState("");
-
   const renderTodos = ({ item, index }) => {
     return (
       <View
@@ -33,17 +31,13 @@ const TodoScreen = () => {
           paddingVertical: 12,
           marginBottom: 12,
           flexDirection: "row",
-          alignItems: "center",
         }}
       >
-        <Text
-          style={{ color: "#fff", fontSize: 20, fontWeight: "800", flex: 1 }}
-        >
+        <IconButton icon="pencil" />
+        <IconButton icon="trash-can" />
+        <Text style={{ color: "#fff", fontSize: 20, fontWeight: "800" }}>
           {item.title}
         </Text>
-
-        <IconButton icon="pencil" iconColor="#fff" />
-        <IconButton icon="trash-can" iconColor="#fff" />
       </View>
     );
   };

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { IconButton } from "react-native-paper";
 
 const dummyData = [
@@ -21,9 +21,11 @@ const dummyData = [
 ];
 
 const TodoScreen = () => {
-  const [todo, setTodo] = useState("");
+
+const [todo,setTodo] = useState("")
 
   const renderTodos = ({ item, index }) => {
+
     return (
       <View
         style={{
