@@ -27,10 +27,6 @@ const TodoScreen = () => {
     setTodo("");
   };
 
-  const handleTodoDelete = (id) => {
-    const updateTodo = todoList.filter((todo) => todo.id !== id);
-    setTodoList(updateTodo);
-  };
   const renderTodos = ({ item, index }) => {
     return (
       <View

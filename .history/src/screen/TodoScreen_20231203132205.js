@@ -27,10 +27,6 @@ const TodoScreen = () => {
     setTodo("");
   };
 
-  const handleTodoDelete = (id) => {
-    const updateTodo = todoList.filter((todo) => todo.id !== id);
-    setTodoList(updateTodo);
-  };
   const renderTodos = ({ item, index }) => {
     return (
       <View
@@ -54,7 +50,7 @@ const TodoScreen = () => {
         <IconButton
           icon="trash-can"
           iconColor="#fff"
-          onPress={() => handleTodoDelete(item.id)}
+          onPress={() => handleTodoDelete()}
         />
       </View>
     );

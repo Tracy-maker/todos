@@ -24,13 +24,8 @@ const TodoScreen = () => {
   const [todoList, setTodoList] = useState([]);
   const handleAddTodo = () => {
     setTodoList([...todoList, { id: Date.now().toString(), title: todo }]);
-    setTodo("");
   };
 
-  const handleTodoDelete = (id) => {
-    const updateTodo = todoList.filter((todo) => todo.id !== id);
-    setTodoList(updateTodo);
-  };
   const renderTodos = ({ item, index }) => {
     return (
       <View
@@ -43,6 +38,7 @@ const TodoScreen = () => {
           flexDirection: "row",
           alignItems: "center",
         }}
+      
       >
         <Text
           style={{ color: "#fff", fontSize: 20, fontWeight: "800", flex: 1 }}
@@ -51,11 +47,7 @@ const TodoScreen = () => {
         </Text>
 
         <IconButton icon="pencil" iconColor="#fff" />
-        <IconButton
-          icon="trash-can"
-          iconColor="#fff"
-          onPress={() => handleTodoDelete(item.id)}
-        />
+        <IconButton icon="trash-can" iconColor="#fff" />
       </View>
     );
   };

@@ -1,5 +1,6 @@
 import {
   FlatList,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -21,16 +22,7 @@ const dummyData = [
 
 const TodoScreen = () => {
   const [todo, setTodo] = useState("");
-  const [todoList, setTodoList] = useState([]);
-  const handleAddTodo = () => {
-    setTodoList([...todoList, { id: Date.now().toString(), title: todo }]);
-    setTodo("");
-  };
 
-  const handleTodoDelete = (id) => {
-    const updateTodo = todoList.filter((todo) => todo.id !== id);
-    setTodoList(updateTodo);
-  };
   const renderTodos = ({ item, index }) => {
     return (
       <View
@@ -51,11 +43,7 @@ const TodoScreen = () => {
         </Text>
 
         <IconButton icon="pencil" iconColor="#fff" />
-        <IconButton
-          icon="trash-can"
-          iconColor="#fff"
-          onPress={() => handleTodoDelete(item.id)}
-        />
+        <IconButton icon="trash-can" iconColor="#fff" />
       </View>
     );
   };
@@ -72,7 +60,7 @@ const TodoScreen = () => {
         }}
         placeholder="Add a task"
         value={todo}
-        onChangeText={(userText) => setTodo(userText)}
+        onChangeText={(userText)=>setTodo(userText)}
       />
       <TouchableOpacity
         style={{
@@ -82,13 +70,12 @@ const TodoScreen = () => {
           marginVertical: 40,
           alignItems: "center",
         }}
-        onPress={() => handleAddTodo()}
       >
         <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
           Add
         </Text>
       </TouchableOpacity>
-      <FlatList data={todoList} renderItem={renderTodos} />
+      <FlatList data={dummyData} renderItem={renderTodos} />
     </View>
   );
 };
