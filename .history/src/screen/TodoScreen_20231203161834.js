@@ -14,9 +14,10 @@ const TodoScreen = () => {
   const [todoList, setTodoList] = useState([]);
   const [editedTodo, setEditedTodo] = useState(null);
   const handleAddTodo = () => {
-    if (todo === "") {
-      return;
-    }
+  
+  if(todo ===""){
+    return;
+  }
     setTodoList([...todoList, { id: Date.now().toString(), title: todo }]);
     setTodo("");
   };
@@ -38,8 +39,8 @@ const TodoScreen = () => {
       }
       return item;
     });
-    setTodoList(updateTodos);
-    setEditedTodo(null);
+    setTodoList(updateTodos)
+    setEditedTodo(null)
     setTodo("");
   };
 
@@ -94,7 +95,7 @@ const TodoScreen = () => {
         value={todo}
         onChangeText={(userText) => setTodo(userText)}
       />
-
+     
       {editedTodo ? (
         <TouchableOpacity
           style={{
