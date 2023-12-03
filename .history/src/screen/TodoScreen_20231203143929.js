@@ -23,22 +23,7 @@ const TodoScreen = () => {
     setTodoList(updateTodo);
   };
 
-  const handleEditTodo = (todo) => {
-    setEditedTodo(todo);
-    setTodo(todo.title);
-  };
-
-  const handleUpdate = () => {
-    const updateTodos = todoList.map((item) => {
-      if (item.id === editedTodo.id) {
-        return { ...item, title: todo };
-      }
-      return item;
-    });
-    setTodoList(updateTodos)
-    setEditedTodo(null)
-    setTodo("");
-  };
+  const handleEditTodo = (id) => { setEditedTodo(todo);setTodo(todo.title)}
 
   const renderTodos = ({ item, index }) => {
     return (
@@ -91,39 +76,20 @@ const TodoScreen = () => {
         value={todo}
         onChangeText={(userText) => setTodo(userText)}
       />
-     
-      {editedTodo ? (
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#000",
-            borderRadius: 6,
-            paddingVertical: 14,
-            marginVertical: 40,
-            alignItems: "center",
-          }}
-          onPress={() => handleUpdate()}
-        >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
-            Save
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#000",
-            borderRadius: 6,
-            paddingVertical: 14,
-            marginVertical: 40,
-            alignItems: "center",
-          }}
-          onPress={() => handleAddTodo()}
-        >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
-            Add
-          </Text>
-        </TouchableOpacity>
-      )}
-
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#000",
+          borderRadius: 6,
+          paddingVertical: 14,
+          marginVertical: 40,
+          alignItems: "center",
+        }}
+        onPress={() => handleAddTodo()}
+      >
+        <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
+          Add
+        </Text>
+      </TouchableOpacity>
       <FlatList data={todoList} renderItem={renderTodos} />
       {todoList.length <= 0 && <Fallback />}
     </View>

@@ -12,7 +12,6 @@ import Fallback from "../components/Fallback";
 const TodoScreen = () => {
   const [todo, setTodo] = useState("");
   const [todoList, setTodoList] = useState([]);
-  const [editedTodo, setEditedTodo] = useState(null);
   const handleAddTodo = () => {
     setTodoList([...todoList, { id: Date.now().toString(), title: todo }]);
     setTodo("");
@@ -22,24 +21,6 @@ const TodoScreen = () => {
     const updateTodo = todoList.filter((todo) => todo.id !== id);
     setTodoList(updateTodo);
   };
-
-  const handleEditTodo = (todo) => {
-    setEditedTodo(todo);
-    setTodo(todo.title);
-  };
-
-  const handleUpdate = () => {
-    const updateTodos = todoList.map((item) => {
-      if (item.id === editedTodo.id) {
-        return { ...item, title: todo };
-      }
-      return item;
-    });
-    setTodoList(updateTodos)
-    setEditedTodo(null)
-    setTodo("");
-  };
-
   const renderTodos = ({ item, index }) => {
     return (
       <View
@@ -63,11 +44,7 @@ const TodoScreen = () => {
           {item.title}
         </Text>
 
-        <IconButton
-          icon="pencil"
-          iconColor="#fff"
-          onPress={() => handleEditTodo(item)}
-        />
+        <IconButton icon="pencil" iconColor="#fff" onPress={()=>handleEditTodo()}/>
         <IconButton
           icon="trash-can"
           iconColor="#fff"
@@ -91,39 +68,20 @@ const TodoScreen = () => {
         value={todo}
         onChangeText={(userText) => setTodo(userText)}
       />
-     
-      {editedTodo ? (
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#000",
-            borderRadius: 6,
-            paddingVertical: 14,
-            marginVertical: 40,
-            alignItems: "center",
-          }}
-          onPress={() => handleUpdate()}
-        >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
-            Save
-          </Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={{
-            backgroundColor: "#000",
-            borderRadius: 6,
-            paddingVertical: 14,
-            marginVertical: 40,
-            alignItems: "center",
-          }}
-          onPress={() => handleAddTodo()}
-        >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
-            Add
-          </Text>
-        </TouchableOpacity>
-      )}
-
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#000",
+          borderRadius: 6,
+          paddingVertical: 14,
+          marginVertical: 40,
+          alignItems: "center",
+        }}
+        onPress={() => handleAddTodo()}
+      >
+        <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
+          Add
+        </Text>
+      </TouchableOpacity>
       <FlatList data={todoList} renderItem={renderTodos} />
       {todoList.length <= 0 && <Fallback />}
     </View>

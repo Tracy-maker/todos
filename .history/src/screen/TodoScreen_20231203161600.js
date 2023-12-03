@@ -37,7 +37,7 @@ const TodoScreen = () => {
     });
     setTodoList(updateTodos)
     setEditedTodo(null)
-    setTodo("");
+    setTodo("")
   };
 
   const renderTodos = ({ item, index }) => {
@@ -91,7 +91,21 @@ const TodoScreen = () => {
         value={todo}
         onChangeText={(userText) => setTodo(userText)}
       />
-     
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#000",
+          borderRadius: 6,
+          paddingVertical: 14,
+          marginVertical: 40,
+          alignItems: "center",
+        }}
+        onPress={() => handleAddTodo()}
+      >
+        <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
+          Add
+        </Text>
+      </TouchableOpacity>
+
       {editedTodo ? (
         <TouchableOpacity
           style={{

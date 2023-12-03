@@ -23,7 +23,7 @@ const TodoScreen = () => {
     setTodoList(updateTodo);
   };
 
-  const handleEditTodo = (todo) => {
+  const handleEditTodo = (id) => {
     setEditedTodo(todo);
     setTodo(todo.title);
   };
@@ -33,11 +33,8 @@ const TodoScreen = () => {
       if (item.id === editedTodo.id) {
         return { ...item, title: todo };
       }
-      return item;
+      return item
     });
-    setTodoList(updateTodos)
-    setEditedTodo(null)
-    setTodo("");
   };
 
   const renderTodos = ({ item, index }) => {
@@ -91,7 +88,21 @@ const TodoScreen = () => {
         value={todo}
         onChangeText={(userText) => setTodo(userText)}
       />
-     
+      <TouchableOpacity
+        style={{
+          backgroundColor: "#000",
+          borderRadius: 6,
+          paddingVertical: 14,
+          marginVertical: 40,
+          alignItems: "center",
+        }}
+        onPress={() => handleAddTodo()}
+      >
+        <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 20 }}>
+          Add
+        </Text>
+      </TouchableOpacity>
+
       {editedTodo ? (
         <TouchableOpacity
           style={{
